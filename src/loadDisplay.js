@@ -1,4 +1,6 @@
 // DOM RELATED MODULE
+import { addTask } from './createTask';
+import { getTaskList } from './createProject';
 import './style.css';
 
 function initialDisplay() {
@@ -89,10 +91,45 @@ function addProjectSidebar(projectName) {
 }
 
 function displayProject(event) {
+    // clear any projects in mainContentContainer before rerendering
+    let mainContentContainer = document.querySelector('.mainContentContainer');
+    while(mainContentContainer.firstChild) {
+        mainContentContainer.removeChild(mainContentContainer.firstChild);
+    }
+    // Change the title
     let projectName = event.target.textContent;
     let mainContentTitle = document.querySelector('.mainContentTitle');
     mainContentTitle.textContent = projectName;
-    // Display contents of project clicked
+    // Add Task Button
+    let mainContent = document.querySelector('.mainContent');
+    const addTaskButton = document.createElement('div');
+    addTaskButton.classList.add('addTaskButton');
+    addTaskButton.textContent = '+ Add Task';
+    addTaskButton.addEventListener('click', addTaskClick);
+    if(mainContent.querySelector('.addTaskButton') == null){
+        mainContent.appendChild(addTaskButton);
+    }
+    // Display tasks of project clicked by appending tasks to mainContentContainer
+    // 1) Access the tasklist of projectObject
+    let taskList = getTaskList(projectName);
+    // 2) Append all to the mainContent
+    displayTasks(taskList);
+}
+
+function addTaskClick() {
+    const addTaskDialog = document.querySelector('.addTaskDialog');
+    addTaskDialog.showModal();
+}
+
+function displayTasks(taskList) {
+    for(let task of taskList) {
+        let taskName = task.taskName;
+        let mainContentContainer = document.querySelector('.mainContentContainer');
+        let taskDiv = document.createElement('div');
+        taskDiv.classList.add('taskDiv');
+        taskDiv.textContent = `${taskName}`;
+        mainContentContainer.appendChild(taskDiv);
+    }
 }
 
 

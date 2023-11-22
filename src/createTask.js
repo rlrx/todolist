@@ -6,7 +6,7 @@ function Task(taskName, taskDetails, taskDate) {
     this.taskDate = taskDate;
 }
 
-export function addTask(event) {
+function addTask(event) {
     event.preventDefault();
     let formData = new FormData(document.forms.newTaskForm);
     let taskName = formData.get('taskName');
@@ -14,6 +14,7 @@ export function addTask(event) {
     let taskDate = formData.get('taskDate');
     let newTask = new Task(taskName, taskDetails, taskDate);
     taskList.push(newTask);
+    return newTask;
 }
 
-export {taskList};
+export {taskList, addTask};

@@ -23,6 +23,18 @@
     transform: translate(-50%, -50%);
 }
 
+.newProjectSubmit, .newTaskSubmit {
+    max-width: max-content;
+}
+
+.newProjectForm, .newTaskForm {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    gap: 7px;
+}
+
+
 .content {
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -89,7 +101,7 @@
     font-size: 15px;
 }
 
-.addProjectButton {
+.addProjectButton, .addTaskButton {
     background-color: #3882F6;
     color: white;
     border-radius: 4px;
