@@ -9,16 +9,20 @@
 <body>
     <div class="dialogBoxes">
         <dialog class="addProjectDialog">
-            <form name="newProjectForm">
+            <form name="newProjectForm" class="newProjectForm">
                 <label for="projectName">Project Name</label>
                 <input type="text" id="projectName" name="projectName" placeholder="Project Name">
                 <button class="newProjectSubmit">Submit</button>
             </form>
         </dialog>
         <dialog class="addTaskDialog">
-            <form name="newTaskForm">
-                <label for="taskName">Project Name</label>
+            <form name="newTaskForm" class="newTaskForm">
+                <label for="taskName">Task Name</label>
                 <input type="text" id="taskName" name="taskName" placeholder="New Task">
+                <label for="taskDetails">Task Details</label>
+                <input type="text" id="taskDetails" name="taskDetails" placeholder="Task Details">
+                <label for="taskDate">Task Date</label>
+                <input type="text" id="taskDate" name="taskDate" placeholder="Task Date">
                 <button class="newTaskSubmit">Submit</button>
             </form>
         </dialog>
