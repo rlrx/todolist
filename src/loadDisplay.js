@@ -1,7 +1,7 @@
 // DOM RELATED MODULE
 import './style.css';
 
-export function initialDisplay() {
+function initialDisplay() {
     const content = document.querySelector('.content');
     // header content
     const header = document.createElement('div');
@@ -34,10 +34,10 @@ export function initialDisplay() {
         // side bar bottom
     const sidebarBottom = document.createElement('div');
     sidebarBottom.classList.add('sidebarBottom');
-    const sidebarProjects = document.createElement('ul');
+    const sidebarProjects = document.createElement('div');
     sidebarProjects.classList.add('sidebarProjects', 'sidebarButton');
     const addProjectButton = document.createElement('div');
-    addProjectButton.textContent = 'Add Project';
+    addProjectButton.textContent = '+ Add Project';
     addProjectButton.classList.add('addProjectButton', 'sidebarButton');
     sidebarBottom.appendChild(sidebarProjects);
     sidebarBottom.appendChild(addProjectButton);
@@ -46,6 +46,12 @@ export function initialDisplay() {
         // main content
     const mainContent = document.createElement('div');
     mainContent.classList.add('mainContent');
+    const mainContentTitle = document.createElement('div');
+    mainContentTitle.classList.add('mainContentTitle');
+    const mainContentContainer = document.createElement('div');
+    mainContentContainer.classList.add('mainContentContainer');
+    mainContent.appendChild(mainContentTitle);
+    mainContent.append(mainContentContainer);
     pageContent.appendChild(sidebar);
     pageContent.appendChild(mainContent);
 
@@ -58,7 +64,6 @@ export function initialDisplay() {
     content.appendChild(header);
     content.appendChild(pageContent);
     content.appendChild(footer);
-
 }
 
 function alltaskDisplay() {
@@ -73,4 +78,23 @@ function importanttaskDisplay() {
 
 }
 
+function addProjectSidebar(projectName) {
+    let sidebarProjects = document.querySelector('.sidebarProjects');
+    const newProject = document.createElement('div');
+    newProject.classList.add('sidebarProject');
+    newProject.textContent = projectName;
+    newProject.addEventListener('click', displayProject);
 
+    sidebarProjects.appendChild(newProject);
+}
+
+function displayProject(event) {
+    let projectName = event.target.textContent;
+    let mainContentTitle = document.querySelector('.mainContentTitle');
+    mainContentTitle.textContent = projectName;
+    // Display contents of project clicked
+}
+
+
+
+export {initialDisplay, addProjectSidebar};
