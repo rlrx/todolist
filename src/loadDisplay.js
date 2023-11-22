@@ -8,7 +8,7 @@ export function initialDisplay() {
     header.classList.add('header');
     const headerTitle = document.createElement('div');
     headerTitle.classList.add('headerTitle');
-    headerTitle.textContent = 'NO Procrastination';
+    headerTitle.textContent = 'NoProcrastination';
     header.appendChild(headerTitle);
 
     // page content
