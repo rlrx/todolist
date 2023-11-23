@@ -1,5 +1,5 @@
 import { projectList, addProject, addTaskToProject } from "./createProject";
-import { initialDisplay, addProjectSidebar } from "./loadDisplay";
+import { initialDisplay, addProjectSidebar, allTaskDisplay, createTaskDiv } from "./loadDisplay";
 import { taskList, addTask } from "./createTask";
 
 initialDisplay();
@@ -25,10 +25,17 @@ newTaskSubmit.addEventListener('click', (event) => {
     let newTask = addTask(event);
     // Link this task to the project
     addTaskToProject(newTask);
+    // Get the taskName, taskDetails, taskDate from newTask object
+    let taskName = newTask.taskName;
+    let taskDetails = newTask.taskDetails;
+    let taskDate = newTask.taskDate;
     // Append this latest task to the main container
-    let mainContentContainer = document.querySelector('.mainContentContainer');
-    let taskDiv = document.createElement('div');
-    taskDiv.classList.add('taskDiv');
-    taskDiv.textContent = `${newTask.taskName}`;
-    mainContentContainer.appendChild(taskDiv);
+    createTaskDiv(taskName, taskDetails, taskDate);
+})
+
+
+// All Tasks Button
+const allTaskButton = document.querySelector('.allTaskButton');
+allTaskButton.addEventListener('click', () => {
+    allTaskDisplay();
 })

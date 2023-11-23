@@ -1,5 +1,5 @@
 // DOM RELATED MODULE
-import { addTask } from './createTask';
+import { addTask, taskList } from './createTask';
 import { getTaskList } from './createProject';
 import './style.css';
 
@@ -23,7 +23,7 @@ function initialDisplay() {
     sidebarTop.classList.add('sidebarTop');
     const allTaskButton = document.createElement('div');
     allTaskButton.classList.add('allTaskButton', 'sidebarButton');
-    allTaskButton.textContent = 'All tasks';
+    allTaskButton.textContent = 'All Tasks';
     const todayButton = document.createElement('div');
     todayButton.classList.add('todayButton', 'sidebarButton');
     todayButton.textContent = 'Today';
@@ -68,8 +68,16 @@ function initialDisplay() {
     content.appendChild(footer);
 }
 
-function alltaskDisplay() {
-
+function allTaskDisplay() {
+    // clear any content in mainContentContainer before rerendering
+    let mainContentContainer = document.querySelector('.mainContentContainer');
+    while(mainContentContainer.firstChild) {
+        mainContentContainer.removeChild(mainContentContainer.firstChild);
+    }
+    // Change the title
+    let mainContentTitle = document.querySelector('.mainContentTitle');
+    mainContentTitle.textContent = 'All Tasks';
+    displayTasks(taskList);
 }
 
 function todaytaskDisplay() {
@@ -124,14 +132,48 @@ function addTaskClick() {
 function displayTasks(taskList) {
     for(let task of taskList) {
         let taskName = task.taskName;
-        let mainContentContainer = document.querySelector('.mainContentContainer');
-        let taskDiv = document.createElement('div');
-        taskDiv.classList.add('taskDiv');
-        taskDiv.textContent = `${taskName}`;
-        mainContentContainer.appendChild(taskDiv);
+        let taskDetails = task.taskDetails;
+        let taskDate = task.taskDate;
+        createTaskDiv(taskName, taskDetails, taskDate);
     }
+}
+
+function createTaskDiv(taskName, taskDetails, taskDate) {
+    let mainContentContainer = document.querySelector('.mainContentContainer');
+    // create taskDiv
+    let taskDiv = document.createElement('div');
+    taskDiv.classList.add('taskDiv');
+    // create taskDivLeft
+    let taskDivLeft = document.createElement('div');
+    taskDivLeft.classList.add('taskDivLeft');
+    // create title and description
+    let taskDivTitle = document.createElement('div');
+    taskDivTitle.classList.add('taskDivTitle');
+    taskDivTitle.textContent = taskName;
+    let taskDivDesc = document.createElement('div');
+    taskDivDesc.classList.add('taskDivDesc');
+    taskDivDesc.textContent = taskDetails;
+    taskDivLeft.appendChild(taskDivTitle);
+    taskDivLeft.appendChild(taskDivDesc);
+    // create taskDivRight
+    let taskDivRight = document.createElement('div');
+    taskDivRight.classList.add('taskDivRight');
+    // create date and checkbox
+    let taskDivDate = document.createElement('div');
+    taskDivDate.classList.add('taskDivDate');
+    taskDivDate.textContent = taskDate;
+    let checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = 'completedCheckbox';
+    checkbox.name = 'completedCheckbox';
+    taskDivRight.appendChild(taskDivDate);
+    taskDivRight.appendChild(checkbox);
+
+    taskDiv.appendChild(taskDivLeft);
+    taskDiv.appendChild(taskDivRight);
+    mainContentContainer.appendChild(taskDiv);
 }
 
 
 
-export {initialDisplay, addProjectSidebar};
+export {initialDisplay, addProjectSidebar, allTaskDisplay, createTaskDiv};
