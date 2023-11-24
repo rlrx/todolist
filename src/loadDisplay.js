@@ -1,6 +1,6 @@
 // DOM RELATED MODULE
-import { addTask, taskList } from './createTask';
-import { getTaskList } from './createProject';
+import { addTask } from './createTask';
+import { getTaskList, getAllTasks } from './createProject';
 import './style.css';
 
 function initialDisplay() {
@@ -77,7 +77,8 @@ function allTaskDisplay() {
     // Change the title
     let mainContentTitle = document.querySelector('.mainContentTitle');
     mainContentTitle.textContent = 'All Tasks';
-    displayTasks(taskList);
+    let taskList = getAllTasks();
+    displayTasks(taskList); // 
 }
 
 function todaytaskDisplay() {
@@ -98,6 +99,7 @@ function addProjectSidebar(projectName) {
     sidebarProjects.appendChild(newProject);
 }
 
+
 function displayProject(event) {
     // clear any projects in mainContentContainer before rerendering
     let mainContentContainer = document.querySelector('.mainContentContainer');
@@ -114,6 +116,7 @@ function displayProject(event) {
     addTaskButton.classList.add('addTaskButton');
     addTaskButton.textContent = '+ Add Task';
     addTaskButton.addEventListener('click', addTaskClick);
+        // Ensure add task button is added only once
     if(mainContent.querySelector('.addTaskButton') == null){
         mainContent.appendChild(addTaskButton);
     }
@@ -166,12 +169,21 @@ function createTaskDiv(taskName, taskDetails, taskDate) {
     checkbox.type = 'checkbox';
     checkbox.id = 'completedCheckbox';
     checkbox.name = 'completedCheckbox';
+    checkbox.addEventListener('click', completedCheckbox);
     taskDivRight.appendChild(taskDivDate);
     taskDivRight.appendChild(checkbox);
 
     taskDiv.appendChild(taskDivLeft);
     taskDiv.appendChild(taskDivRight);
     mainContentContainer.appendChild(taskDiv);
+}
+
+function completedCheckbox(event) {
+    let mainContentContainer = document.querySelector('.mainContentContainer');
+    console.log('checkbox clicked');
+    let checkbox = event.target;
+    let taskDivToBeDeleted = checkbox.parentNode.parentNode;
+    mainContentContainer.removeChild(taskDivToBeDeleted);
 }
 
 

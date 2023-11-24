@@ -24,10 +24,20 @@ function addTaskToProject(newTask) {
     console.log(project.projectTaskList);
 }
 
+// get the task list of project object based on task name
 function getTaskList(projectName) {
     const project = projectList.find(obj => obj.projectName === projectName);
     console.log(project.projectTaskList);
     return project.projectTaskList;
+}
+
+// iterate through all project objects and concatenate all their projectTaskList
+function getAllTasks() {
+    let taskList = [];
+    for(let proj of projectList) {
+        taskList = taskList.concat(proj.projectTaskList);
+    }
+    return taskList;
 }
 
 
@@ -36,7 +46,4 @@ function getTaskList(projectName) {
 
 
 
-
-
-
-export {projectList, addProject, addTaskToProject, getTaskList};
+export {projectList, addProject, addTaskToProject, getTaskList, getAllTasks};

@@ -13,13 +13,14 @@ addProjectButton.addEventListener('click', () => {
 
 const newProjectSubmit = document.querySelector('.newProjectSubmit');
 newProjectSubmit.addEventListener('click', (event) => {
-
     let newProject = addProject(event); //new project obj
     addProjectSidebar(newProject.projectName);
+    addProjectDialog.close()
 })
 
 
 // Add Task Submit Button
+const addTaskDialog = document.querySelector('.addTaskDialog');
 const newTaskSubmit = document.querySelector('.newTaskSubmit');
 newTaskSubmit.addEventListener('click', (event) => {
     let newTask = addTask(event);
@@ -31,6 +32,7 @@ newTaskSubmit.addEventListener('click', (event) => {
     let taskDate = newTask.taskDate;
     // Append this latest task to the main container
     createTaskDiv(taskName, taskDetails, taskDate);
+    addTaskDialog.close();
 })
 
 

@@ -1,4 +1,4 @@
-const taskList = [];
+
 
 function Task(taskName, taskDetails, taskDate) {
     this.taskName = taskName;
@@ -13,8 +13,7 @@ function addTask(event) {
     let taskDetails = formData.get('taskDetails');
     let taskDate = formData.get('taskDate');
     let newTask = new Task(taskName, taskDetails, taskDate);
-    taskList.push(newTask);
     return newTask;
 }
 
-export {taskList, addTask};
+export { addTask };
