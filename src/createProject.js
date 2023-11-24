@@ -19,7 +19,6 @@ function addTaskToProject(newTask) {
     let projectName = document.querySelector('.mainContentTitle').textContent;
     // Find the project based on projectName from projectList
     const project = projectList.find(obj => obj.projectName === projectName);
-    console.log("Task added to project Task List");
     project.projectTaskList.push(newTask);
     console.log(project.projectTaskList);
 }
@@ -64,10 +63,15 @@ function getProjectNameByTask(taskName) {
     return projectName;
 }
 
+function deleteProject(projectName) {
+    const projectIndex = projectList.findIndex(obj => obj.projectName === projectName);
+    projectList.splice(projectIndex, 1);
+}
 
 
 
 
 
 
-export {projectList, addProject, addTaskToProject, getTaskList, getAllTasks, getProjectNameByTask, removeTaskFromProject};
+
+export {projectList, addProject, addTaskToProject, getTaskList, getAllTasks, getProjectNameByTask, removeTaskFromProject, deleteProject};

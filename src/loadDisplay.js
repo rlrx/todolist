@@ -1,6 +1,6 @@
 // DOM RELATED MODULE
 import { addTask } from './createTask';
-import { getTaskList, getAllTasks, projectList, getProjectNameByTask, removeTaskFromProject } from './createProject';
+import { getTaskList, getAllTasks, projectList, getProjectNameByTask, removeTaskFromProject, deleteProject } from './createProject';
 import './style.css';
 
 function initialDisplay() {
@@ -78,7 +78,7 @@ function allTaskDisplay() {
     let mainContentTitle = document.querySelector('.mainContentTitle');
     mainContentTitle.textContent = 'All Tasks';
     let taskList = getAllTasks();
-    displayTasks(taskList); // 
+    displayTasks(taskList); 
 }
 
 function todaytaskDisplay() {
@@ -91,14 +91,21 @@ function importanttaskDisplay() {
 
 function addProjectSidebar(projectName) {
     let sidebarProjects = document.querySelector('.sidebarProjects');
+    const newProjectContainer = document.createElement('div');
+    newProjectContainer.classList.add('sidebarProject');
     const newProject = document.createElement('div');
-    newProject.classList.add('sidebarProject');
+    newProject.classList.add('sidebarProjectName');
     newProject.textContent = projectName;
     newProject.addEventListener('click', displayProject);
-
-    sidebarProjects.appendChild(newProject);
+    let checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = 'completedCheckbox';
+    checkbox.name = 'completedCheckbox';
+    checkbox.addEventListener('click', completedProjectCheckbox);
+    newProjectContainer.append(newProject);
+    newProjectContainer.appendChild(checkbox);
+    sidebarProjects.appendChild(newProjectContainer);
 }
-
 
 function displayProject(event) {
     // clear any projects in mainContentContainer before rerendering
@@ -169,7 +176,7 @@ function createTaskDiv(taskName, taskDetails, taskDate) {
     checkbox.type = 'checkbox';
     checkbox.id = 'completedCheckbox';
     checkbox.name = 'completedCheckbox';
-    checkbox.addEventListener('click', completedCheckbox);
+    checkbox.addEventListener('click', completedTaskCheckbox);
     taskDivRight.appendChild(taskDivDate);
     taskDivRight.appendChild(checkbox);
 
@@ -178,10 +185,23 @@ function createTaskDiv(taskName, taskDetails, taskDate) {
     mainContentContainer.appendChild(taskDiv);
 }
 
-function completedCheckbox(event) {
+function completedProjectCheckbox(event) {
+    // remove sidebarProject from sidebarProjects
+    let sidebarProjects = document.querySelector('.sidebarProjects');
+    let checkbox = event.target;
+    let sidebarProjectToBeDeleted = checkbox.parentNode;
+    sidebarProjects.removeChild(sidebarProjectToBeDeleted);
+
+    // remove project from projectList
+    let projectName = sidebarProjectToBeDeleted.querySelector('.sidebarProjectName').textContent;
+    deleteProject(projectName);
+    // jump to display all task on main content when a project is deleted
+    allTaskDisplay();
+}
+
+function completedTaskCheckbox(event) {
     // remove taskDiv from mainContentContainer
     let mainContentContainer = document.querySelector('.mainContentContainer');
-    console.log('checkbox clicked');
     let checkbox = event.target;
     let taskDivToBeDeleted = checkbox.parentNode.parentNode;
     mainContentContainer.removeChild(taskDivToBeDeleted);
@@ -194,6 +214,7 @@ function completedCheckbox(event) {
     // console.log('check here ends2');
     removeTaskFromProject(projectNameToBeDeleted, taskTitleToBeDeleted);
 }
+
 
 
 
