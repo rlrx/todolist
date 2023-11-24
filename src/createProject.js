@@ -24,11 +24,21 @@ function addTaskToProject(newTask) {
     console.log(project.projectTaskList);
 }
 
-// get the task list of project object based on task name
+// get the task list of a project object based on task name
 function getTaskList(projectName) {
     const project = projectList.find(obj => obj.projectName === projectName);
     console.log(project.projectTaskList);
     return project.projectTaskList;
+}
+
+function removeTaskFromProject(projectName, taskTitleToBeDeleted) {
+    const projectIndex = projectList.findIndex(obj => obj.projectName === projectName);
+    const project = projectList.find(obj => obj.projectName === projectName);
+    let updatedProjectTaskList = project.projectTaskList.filter(task => task.taskName !== taskTitleToBeDeleted);
+    let updatedAttribute = {projectTaskList: updatedProjectTaskList};
+    if(projectIndex !== -1) {
+        Object.assign(projectList[projectIndex], updatedAttribute);
+    }
 }
 
 // iterate through all project objects and concatenate all their projectTaskList
@@ -40,10 +50,24 @@ function getAllTasks() {
     return taskList;
 }
 
+// iterate through all project objects to find the project which holds a task
+function getProjectNameByTask(taskName) {
+    let projectName;
+    for(let proj of projectList) {
+        for(let task of proj.projectTaskList) {
+            if(task.taskName === taskName) {
+                console.log(task);
+                projectName = proj.projectName;
+            }
+        }
+    }
+    return projectName;
+}
 
 
 
 
 
 
-export {projectList, addProject, addTaskToProject, getTaskList, getAllTasks};
+
+export {projectList, addProject, addTaskToProject, getTaskList, getAllTasks, getProjectNameByTask, removeTaskFromProject};

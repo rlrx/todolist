@@ -1,6 +1,6 @@
 import { projectList, addProject, addTaskToProject } from "./createProject";
 import { initialDisplay, addProjectSidebar, allTaskDisplay, createTaskDiv } from "./loadDisplay";
-import { taskList, addTask } from "./createTask";
+import { addTask } from "./createTask";
 
 initialDisplay();
 

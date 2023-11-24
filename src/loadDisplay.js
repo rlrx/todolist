@@ -1,6 +1,6 @@
 // DOM RELATED MODULE
 import { addTask } from './createTask';
-import { getTaskList, getAllTasks } from './createProject';
+import { getTaskList, getAllTasks, projectList, getProjectNameByTask, removeTaskFromProject } from './createProject';
 import './style.css';
 
 function initialDisplay() {
@@ -179,11 +179,20 @@ function createTaskDiv(taskName, taskDetails, taskDate) {
 }
 
 function completedCheckbox(event) {
+    // remove taskDiv from mainContentContainer
     let mainContentContainer = document.querySelector('.mainContentContainer');
     console.log('checkbox clicked');
     let checkbox = event.target;
     let taskDivToBeDeleted = checkbox.parentNode.parentNode;
     mainContentContainer.removeChild(taskDivToBeDeleted);
+
+    // remove task from projectTaskList of project object
+    let taskTitleToBeDeleted = taskDivToBeDeleted.querySelector('.taskDivLeft .taskDivTitle').textContent;
+    let projectNameToBeDeleted = getProjectNameByTask(taskTitleToBeDeleted);
+    // console.log('check here');
+    // console.log(projectNameToBeDeleted); //issue
+    // console.log('check here ends2');
+    removeTaskFromProject(projectNameToBeDeleted, taskTitleToBeDeleted);
 }
 
 
