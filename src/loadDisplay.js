@@ -98,6 +98,7 @@ function addProjectSidebar(projectName) {
     newProject.textContent = projectName;
     newProject.addEventListener('click', displayProject);
     let checkbox = document.createElement('input');
+    checkbox.classList.add('projectCheckbox');
     checkbox.type = 'checkbox';
     checkbox.id = 'completedCheckbox';
     checkbox.name = 'completedCheckbox';
@@ -173,6 +174,7 @@ function createTaskDiv(taskName, taskDetails, taskDate) {
     taskDivDate.classList.add('taskDivDate');
     taskDivDate.textContent = taskDate;
     let checkbox = document.createElement('input');
+    checkbox.classList.add('taskCheckbox');
     checkbox.type = 'checkbox';
     checkbox.id = 'completedCheckbox';
     checkbox.name = 'completedCheckbox';

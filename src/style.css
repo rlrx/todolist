@@ -106,6 +106,16 @@
     gap: 8px;
 }
 
+.taskCheckbox, .projectCheckbox {
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.taskCheckbox {
+    width: 20px;
+    height: 20px;
+}
+
 .addProjectButton, .addTaskButton {
     background-color: #3882F6;
     color: white;
