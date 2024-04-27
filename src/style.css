@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'CustomFont'; /* Choose a name for your font family */
-    src: url('/Users/ryan/repos/todolist/src/Alata-Regular.ttf') format('truetype');
+    src: url('/Users/ryan/Desktop/odin/todolist/src/Alata-Regular.ttf') format('truetype');
     /* Add additional src lines for other font formats if necessary */
     font-weight: normal;
     font-style: normal;
   }
-
+  
 * {
     box-sizing: border-box;
     font-family: 'Alata', sans-serif;

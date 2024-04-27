@@ -68,8 +68,25 @@ function initialDisplay() {
     content.appendChild(footer);
 }
 
+function localStorageDisplay() {
+    // Clear any projects in sidebarProjects before rerendering
+    let sidebarProjects = document.querySelector('.sidebarProjects');
+    while(sidebarProjects.firstChild) {
+        sidebarProjects.removeChild(sidebarProjects.firstChild);
+    }
+    // Get the projectList from localStorage
+    let projectListString = localStorage.getItem('projectListKey');
+    console.log(projectListString);
+    let projectList = JSON.parse(projectListString); // List of projectObjects
+    console.log(typeof projectList);
+    // Iterate through the projectList and run addProjectSidebar on each project
+    for (let project of projectList){
+        addProjectSidebar(project.projectName);
+    }
+}
+
 function allTaskDisplay() {
-    // clear any content in mainContentContainer before rerendering
+    // Clear any content in mainContentContainer before rerendering
     let mainContentContainer = document.querySelector('.mainContentContainer');
     while(mainContentContainer.firstChild) {
         mainContentContainer.removeChild(mainContentContainer.firstChild);
@@ -220,4 +237,4 @@ function completedTaskCheckbox(event) {
 
 
 
-export {initialDisplay, addProjectSidebar, allTaskDisplay, createTaskDiv};
+export {initialDisplay, addProjectSidebar, allTaskDisplay, createTaskDiv, localStorageDisplay};

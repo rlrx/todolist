@@ -1,8 +1,21 @@
 import { projectList, addProject, addTaskToProject } from "./createProject";
-import { initialDisplay, addProjectSidebar, allTaskDisplay, createTaskDiv } from "./loadDisplay";
+import { initialDisplay, addProjectSidebar, allTaskDisplay, createTaskDiv, localStorageDisplay } from "./loadDisplay";
 import { addTask } from "./createTask";
 
+// Load initial display elements
 initialDisplay();
+
+// Check if localStorage is empty
+if (localStorage.length === 0) {
+    console.log("localStorage is empty");
+} else {
+    console.log("localStorage is not empty");
+    console.log(localStorage);
+    localStorageDisplay();
+}
+
+// Load localStorage projects
+// localStorageDisplay();
 
 // Add Project Button
 const addProjectDialog = document.querySelector('.addProjectDialog');
