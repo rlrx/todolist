@@ -1,6 +1,6 @@
 // DOM RELATED MODULE
 import { addTask } from './createTask';
-import { getTaskList, getAllTasks, projectList, getProjectNameByTask, removeTaskFromProject, deleteProject } from './createProject';
+import { getTaskList, getAllTasks, projectList, getProjectNameByTask, removeTaskFromProject, deleteProject, getLocalStorageProjectList } from './createProject';
 import './style.css';
 
 function initialDisplay() {
@@ -75,10 +75,7 @@ function localStorageDisplay() {
         sidebarProjects.removeChild(sidebarProjects.firstChild);
     }
     // Get the projectList from localStorage
-    let projectListString = localStorage.getItem('projectListKey');
-    let projectList = JSON.parse(projectListString); // List of projectObjects
-    console.log("parsed projectList below: ");
-    console.log(projectList);
+    let projectList = getLocalStorageProjectList();
     // Iterate through the projectList and run addProjectSidebar on each project
     for (let project of projectList){
         addProjectSidebar(project.projectName);
