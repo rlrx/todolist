@@ -76,9 +76,9 @@ function localStorageDisplay() {
     }
     // Get the projectList from localStorage
     let projectListString = localStorage.getItem('projectListKey');
-    console.log(projectListString);
     let projectList = JSON.parse(projectListString); // List of projectObjects
-    console.log(typeof projectList);
+    console.log("parsed projectList below: ");
+    console.log(projectList);
     // Iterate through the projectList and run addProjectSidebar on each project
     for (let project of projectList){
         addProjectSidebar(project.projectName);

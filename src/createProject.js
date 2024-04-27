@@ -27,6 +27,9 @@ function addTaskToProject(newTask) {
 
 // get the task list of a project object based on task name
 function getTaskList(projectName) {
+    // get projectList based on what is in localStorage
+    let projectListString = localStorage.getItem('projectListKey');
+    let projectList = JSON.parse(projectListString); // List of projectObjects
     const project = projectList.find(obj => obj.projectName === projectName);
     console.log(project.projectTaskList);
     return project.projectTaskList;
@@ -73,9 +76,8 @@ function deleteProject(projectName) {
 }
 
 function updateLocalStorage(projectList) {
-    let projectListString = JSON.stringify(projectList);
     // Store the JSON string in localStorage under a specific key
-    localStorage.setItem('projectListKey', projectListString);
+    localStorage.setItem('projectListKey', JSON.stringify(projectList));
 }
 
 

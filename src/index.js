@@ -10,7 +10,6 @@ if (localStorage.length === 0) {
     console.log("localStorage is empty");
 } else {
     console.log("localStorage is not empty");
-    console.log(localStorage);
     localStorageDisplay();
 }
 
