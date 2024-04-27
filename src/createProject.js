@@ -12,6 +12,8 @@ function addProject(event) {
     let projectName = formData.get('projectName');
     let newProject = new Project(projectName);
     projectList.push(newProject);
+    // update local storage projectList
+    updateLocalStorage(projectList);
     return newProject;
 }
 
@@ -66,8 +68,15 @@ function getProjectNameByTask(taskName) {
 function deleteProject(projectName) {
     const projectIndex = projectList.findIndex(obj => obj.projectName === projectName);
     projectList.splice(projectIndex, 1);
+    // update local storage projectList
+    updateLocalStorage(projectList);
 }
 
+function updateLocalStorage(projectList) {
+    let projectListString = JSON.stringify(projectList);
+    // Store the JSON string in localStorage under a specific key
+    localStorage.setItem('projectListKey', projectListString);
+}
 
 
 
