@@ -77,6 +77,7 @@ function localStorageDisplay() {
     // Get the projectList from localStorage
     let projectList = getLocalStorageProjectList();
     // Iterate through the projectList and run addProjectSidebar on each project
+    console.log("not iterable error check here");
     for (let project of projectList){
         addProjectSidebar(project.projectName);
     }
