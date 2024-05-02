@@ -90,6 +90,12 @@ function allTaskDisplay() {
     while(mainContentContainer.firstChild) {
         mainContentContainer.removeChild(mainContentContainer.firstChild);
     }
+    // Clear add task button created coming from Project Page (All Task page should not allow adding of new tasks here)
+    let mainContent = document.querySelector('.mainContent');
+    const addTaskButton = mainContent.querySelector('.addTaskButton');
+    if(addTaskButton !== null){
+        addTaskButton.remove();
+    }
     // Change the title
     let mainContentTitle = document.querySelector('.mainContentTitle');
     mainContentTitle.textContent = 'All Tasks';

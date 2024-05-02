@@ -10,8 +10,6 @@ if (localStorage.getItem('projectListKey') === null) {
     console.log("localStorage is empty");
 } else {
     console.log("localStorage is not empty");
-    let item1 = localStorage.getItem('projectListKey');
-    console.log(item1);
     localStorageDisplay();
 }
 
