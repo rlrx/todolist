@@ -98,9 +98,15 @@ function updateLocalStorage(projectList) {
 }
 
 function getLocalStorageProjectList(){
+    let projectList;
     let projectListString = localStorage.getItem('projectListKey');
-    let projectList = JSON.parse(projectListString); // List of projectObjects
-    return projectList;
+    if (projectListString === null){
+        projectList = [];
+    }
+    else {
+        projectList = JSON.parse(projectListString); // List of projectObjects
+    }
+    return projectList; // returns an array object
 }
 
 
